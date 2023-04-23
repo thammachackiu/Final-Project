@@ -21,7 +21,7 @@ def home():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    name = request.form['name']
+    name = request.form['username']
     password = request.form['password']
     email = request.form['email']
     cursor = mydb.cursor()
