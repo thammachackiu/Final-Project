@@ -1,19 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>Login</head>
 <meta charset="utf-8">
 <title>Web App</title>
 
+<body>
 <div role="tabpanel">
  <!-- Nav tabs -->
  <ul class="nav nav-tabs" role="tablist">
- <li role="presentation" class="active"><a href="#basics"
-aria-controls="basics" role="tab" data-toggle="tab">Data</a></li>
- <li role="presentation"><a href="#wdev" aria-controls="wdev" role="tab"
-data-toggle="tab">Visualizations</a></li>
- <li role="presentation"><a href="#dan" aria-controls="dan" role="tab"
-data-toggle="tab">Data Analysis</a></li>
- </ul>
+    <li role="presentation" class="active"><a href="{{ url_for('dashboard') }}" aria-controls="basics" role="tab" data-toggle="tab">Data</a></li>
+    <li role="presentation"><a href="{{ url_for('query') }}" aria-controls="wdev" role="tab" data-toggle="tab">Queries</a></li>
+</ul>
+</div>
 
- </div>
+<div role="header">
+    <h1>We have a button to display the raw data for Dogs, Locations, and Districts in New York. As well, we have different joins that can be seen.</h1>
+</div>
+
+<div role="header">
+    <h2>Dog Information</h2>
+</div>
+<div>
+    <form action="{{ url_for('rawdogdata') }}" method="GET">
+        <input type="submit" value="Dogs">
+   </form>
+</div>
+
+<div role="header">
+    <h2>Location Information</h2>
+</div>
+<div>
+    <form action="{{ url_for('rawlocdata') }}" method="GET">
+        <input type="submit" value="Location">
+   </form>
+</div>
+
+<div role="header">
+    <h2>District Information</h2>
+</div>
+<div>
+    <form action="{{ url_for('rawdisdata') }}" method="GET">
+        <input type="submit" value="District">
+   </form>
+</div>
+
+<div role="header">
+    <h2>Dog and Location Information</h2>
+</div>
+<div>
+    <form action="{{ url_for('rawdoglocdata') }}" method="GET">
+        <input type="submit" value="Dogs and Location">
+   </form>
+</div>
+
+<div role="header">
+    <h2>Dog and District Information</h2>
+</div>
+<div>
+    <form action="{{ url_for('rawdogdisdata') }}" method="GET">
+        <input type="submit" value="Dogs and District">
+   </form>
+</div>
+
+<div role="header">
+    <h2>Location and District Information</h2>
+</div>
+<div>
+    <form action="{{ url_for('rawlocdisdata') }}" method="GET">
+        <input type="submit" value="Location and District">
+   </form>
+</div>
+
+<div role="header">
+    <h2>Dog, Location, and District Information</h2>
+</div>
+<div>
+    <form action="{{ url_for('rawdoglocdisdata') }}" method="GET">
+        <input type="submit" value="Dogs, Location, and District">
+   </form>
+</div>
+
+</body>
  </html>

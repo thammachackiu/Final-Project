@@ -2,33 +2,13 @@
 <html lang="en">
 <head>Login</head>
 <meta charset="utf-8">
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/home.css') }}">
 <title>Web App</title>
-
-<!-- <div>
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-    <br/>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-    <br/>
-    <button type="submit">Login</button>
-    <label>
-      <input type="checkbox" name="remember"> Remember me
-    </label>
-</div>
-
-<div>
-    <span class="psw"><a href="#">Create Account</a></span>
-    <br/>
-    <span class="psw"><a href="#">Forgot Password?</a></span> 
-</div> -->
 <form action="{{ url_for('submit') }}" method="post">
-  <label for="name">Name:</label>
-  <input type="text" name="name"><br>
-  <label for="email">Email:</label>
-  <input type="text" name="email"><br>
-  <input type="submit" value="Submit">
+    <label for="name">Name:</label>
+    <input type="text" name="name"><br>
+    <label for="email">Email:</label>
+    <input type="text" name="email"><br>
+    <input type="submit" value="Submit">
 </form>
-
-
 </html>

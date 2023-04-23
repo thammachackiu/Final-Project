@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <title>Web App</title>
+   </head>
+
+   <body>
+      <div role="tabpanel">
+      <!-- Nav tabs -->
+         <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="{{ url_for('dashboard') }}" aria-controls="basics" role="tab" data-toggle="tab">Data</a></li>
+            <li role="presentation"><a href="{{ url_for('query') }}" aria-controls="wdev" role="tab" data-toggle="tab">Queries</a></li>
+         </ul>
+
+      </div>
+
+      <h1>This page has several buttons that will display information and some visuals for respective queries.</h1>
+
+      <div role="header">
+         <h2>Dog Information by Burrough</h2>
+      </div>
+
+      <div>
+         <form action="{{ url_for('bronx') }}" method="GET">
+            <input type="submit" value="Bronx">
+        </form>
+      </div>
+      <div>
+         <form action="{{ url_for('brooklyn') }}" method="GET">
+            <input type="submit" value="Brooklyn">
+        </form>
+      </div>
+      <div>
+         <form action="{{ url_for('manhattan') }}" method="GET">
+            <input type="submit" value="Manhattan">
+        </form>
+      </div>
+      <div>
+         <form action="{{ url_for('queens') }}" method="GET">
+            <input type="submit" value="Queens">
+        </form>
+      </div>
+      <div>
+         <form action="{{ url_for('staten') }}" method="GET">
+            <input type="submit" value="Staten Island">
+        </form>
+      </div>
+
+      <div role="header">
+         <h2>Count of Terriers in Each Burrough</h2>
+      </div>
+      <div>
+         <form action="{{ url_for('terrier') }}" method="GET">
+            <input type="submit" value="Terrier Count">
+        </form>
+      </div>
+
+      <div role="header">
+         <h2>Top 10 Breeds in the Bronx Graph</h2>
+      </div>
+      <div>
+         <form action="{{ url_for('bronxbreeds') }}" method="GET">
+            <input type="submit" value="Breeds in Bronx">
+        </form>
+      </div>
+
+      <div role="header">
+         <h2>Top 10 Breeds in the Brooklyn Graph</h2>
+      </div>
+      <div>
+         <form action="{{ url_for('brookbreeds') }}" method="GET">
+            <input type="submit" value="Breeds in Brooklyn">
+        </form>
+      </div>
+
+      <div role="header">
+         <h2>Top 10 Breeds in the Manhattan Graph</h2>
+      </div>
+      <div>
+         <form action="{{ url_for('manbreeds') }}" method="GET">
+            <input type="submit" value="Breeds in Manhattan">
+        </form>
+      </div>
+
+      <div role="header">
+         <h2>Top 10 Breeds in the Queens Graph</h2>
+      </div>
+      <div>
+         <form action="{{ url_for('queensbreeds') }}" method="GET">
+            <input type="submit" value="Breeds in Queens">
+        </form>
+      </div>
+
+      <div role="header">
+         <h2>Top 10 Breeds in Staten Island Graph</h2>
+      </div>
+      <div>
+         <form action="{{ url_for('statenbreeds') }}" method="GET">
+            <input type="submit" value="Breeds in Staten Island">
+        </form>
+      </div>
+
+   </body>
+
+ </html>
