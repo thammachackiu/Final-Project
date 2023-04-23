@@ -22,10 +22,11 @@ def home():
 @app.route('/submit', methods=['POST'])
 def submit():
     name = request.form['name']
+    password = request.form['password']
     email = request.form['email']
     cursor = mydb.cursor()
-    query = "INSERT INTO users (name, email) VALUES (%s, %s)"
-    values = (name, email)
+    query = "INSERT INTO users (name, password, email) VALUES (%s, %s, %s)"
+    values = (name, password, email)
     cursor.execute(query, values)
     mydb.commit()
     return render_template('submit.html', name=name)
