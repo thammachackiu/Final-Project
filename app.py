@@ -50,7 +50,7 @@ def rawlocdata():
     query = "select * from location limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
-    return render_template('datatable.html', data = results)
+    return render_template('datatableLocation.html', data = results)
 
 @app.route('/rawdisdata', methods=['GET'])
 def rawdisdata():
@@ -58,7 +58,7 @@ def rawdisdata():
     query = "select * from votingdistrict limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
-    return results
+    return render_template('datatablevotingdistrict.html', data = results)
 
 @app.route('/rawdoglocdata', methods=['GET'])
 def rawdoglocdata():
@@ -66,23 +66,15 @@ def rawdoglocdata():
     query = "select dog.ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, State, ZipCode, City, Borough from dog join location on dog.communitydistrict = location.communitydistrict limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
-    return results
+    return render_template('DTdogloc.html', data = results)
 
 @app.route('/rawdogdisdata', methods=['GET'])
 def rawdogdisdata():
     cursor = mydb.cursor()
-    query = "select dog.ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, CityCouncilDistrict, CongressionalDistrict, StateSenatorialDistrict, RowNumber, ZipCode from dog join votingdistrict on dog.communitydistrict = votingdistrict.communitydistrict limit 100;"
+    query = "select dog.ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, CityCouncilDistrict, CongressionalDistrict, StateSenatorialDistrict, ZipCode from dog join votingdistrict on dog.communitydistrict = votingdistrict.communitydistrict limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
-    return results
-
-@app.route('/rawlocdisdata', methods=['GET'])
-def rawlocdisdata():
-    cursor = mydb.cursor()
-    query = "select * from location join votingdistrict limit 100;"
-    cursor.execute(query)
-    results = cursor.fetchall()
-    return results
+    return render_template('DTdogvote.html', data = results)
 
 @app.route('/rawdoglocdisdata', methods=['GET'])
 def rawdoglocdisdata():
@@ -90,7 +82,7 @@ def rawdoglocdisdata():
     query = "select dog.ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, State, location.ZipCode, City, Borough, CityCouncilDistrict, CongressionalDistrict, StateSenatorialDistrict from dog join location on dog.communitydistrict = location.communitydistrict join votingdistrict on dog.communitydistrict = votingdistrict.communitydistrict limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
-    return results
+    return render_template('DTdoglocvote.html', data = results)
 
 
 @app.route('/query/', methods=['GET'])
