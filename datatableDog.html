@@ -35,6 +35,32 @@
 
 	<h1>Dog Data</h1>
 
+	<div>
+		<label for="id-filter">ID:</label>
+		<input type="text" id="id-filter">
+
+		<label for="name-filter">Name:</label>
+		<input type="text" id="name-filter">
+
+		<label for="gender-filter">Gender:</label>
+		<input type="text" id="gender-filter">
+
+		<label for="birth-month-filter">Birth Month:</label>
+		<input type="text" id="birth-month-filter">
+
+		<label for="breed-filter">Breed:</label>
+		<input type="text" id="breed-filter">
+
+		<label for="license-expiration-date-filter">License Expiration Date:</label>
+		<input type="text" id="license-expiration-date-filter">
+
+		<label for="license-issue-date-filter">License Issue Date:</label>
+		<input type="text" id="license-issue-date-filter">
+
+		<label for="district-filter">District:</label>
+		<input type="text" id="district-filter">
+	</div>
+
 	<table>
 		<thead>
 			<tr>
@@ -46,8 +72,6 @@
 				<th>License Expiration Date</th>
 				<th>License Issue Date</th>
 				<th>District</th>
-			</tr>
-			<tr>
 			</tr>
 		</thead>
 		<tbody id="table-body">
@@ -68,5 +92,50 @@
 
 	<script>
 		var data = {{ data|tojson }};
+
+		function filterTable() {
+			var idFilter = document.getElementById("id-filter").value.toUpperCase();
+			var nameFilter = document.getElementById("name-filter").value.toUpperCase();
+			var genderFilter = document.getElementById("gender-filter").value.toUpperCase();
+			var birthMonthFilter = document.getElementById("birth-month-filter").value.toUpperCase();
+			var breedFilter = document.getElementById("breed-filter").value.toUpperCase();
+			var licenseExpirationDateFilter = document.getElementById("license-expiration-date-filter").value.toUpperCase();
+			var licenseIssueDateFilter = document.getElementById("license-issue-date-filter").value.toUpperCase();
+			var districtFilter = document.getElementById("district-filter").value.toUpperCase();
+			var tableBody = document.getElementById("table-body");
+		var rows = tableBody.getElementsByTagName("tr");
+
+		for (var i = 0; i < rows.length; i++) {
+			var cells = rows[i].getElementsByTagName("td");
+			var id = cells[0].textContent.toUpperCase();
+			var name = cells[1].textContent.toUpperCase();
+			var gender = cells[2].textContent.toUpperCase();
+			var birthMonth = cells[3].textContent.toUpperCase();
+			var breed = cells[4].textContent.toUpperCase();
+			var licenseExpirationDate = cells[5].textContent.toUpperCase();
+			var licenseIssueDate = cells[6].textContent.toUpperCase();
+			var district = cells[7].textContent.toUpperCase();
+
+			if (id.indexOf(idFilter) > -1 &&
+				name.indexOf(nameFilter) > -1 &&
+				gender.indexOf(genderFilter) > -1 &&
+				birthMonth.indexOf(birthMonthFilter) > -1 &&
+				breed.indexOf(breedFilter) > -1 &&
+				licenseExpirationDate.indexOf(licenseExpirationDateFilter) > -1 &&
+				licenseIssueDate.indexOf(licenseIssueDateFilter) > -1 &&
+				district.indexOf(districtFilter) > -1) {
+				rows[i].style.display = "";
+			} else {
+				rows[i].style.display = "none";
+			}
+		}
+	}
+
+	var filterInputs = document.querySelectorAll("#id-filter, #name-filter, #gender-filter, #birth-month-filter, #breed-filter, #license-expiration-date-filter, #license-issue-date-filter, #district-filter");
+
+	for (var i = 0; i < filterInputs.length; i++) {
+		filterInputs[i].addEventListener("keyup", filterTable);
+	}
+</script>
 </body>
 </html>
