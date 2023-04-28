@@ -12,7 +12,7 @@ mydb = mysql.connector.connect(
     user="root",
     password="root",
     database="dogsinny",
-    port = '3306'
+    port="8889"
 )
 
 @app.route('/')
@@ -42,7 +42,7 @@ def rawdogdata():
     query = "select * from dog limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
-    return results
+    return render_template('datatableDog.html', data=results)
 
 @app.route('/rawlocdata', methods=['GET'])
 def rawlocdata():
@@ -50,7 +50,7 @@ def rawlocdata():
     query = "select * from location limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
-    return results
+    return render_template('datatable.html', data = results)
 
 @app.route('/rawdisdata', methods=['GET'])
 def rawdisdata():
@@ -63,7 +63,7 @@ def rawdisdata():
 @app.route('/rawdoglocdata', methods=['GET'])
 def rawdoglocdata():
     cursor = mydb.cursor()
-    query = "select ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, State, ZipCode, City, Borough from dog join location on dog.communitydistrict = location.communitydistrict limit 100;"
+    query = "select dog.ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, State, ZipCode, City, Borough from dog join location on dog.communitydistrict = location.communitydistrict limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
     return results
@@ -71,7 +71,7 @@ def rawdoglocdata():
 @app.route('/rawdogdisdata', methods=['GET'])
 def rawdogdisdata():
     cursor = mydb.cursor()
-    query = "select ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, CityCouncilDistrict, CongressionalDistrict, StateSenatorialDistrict, RowNumber, ZipCode from dog join votingdistrict on dog.communitydistrict = votingdistrict.communitydistrict limit 100;"
+    query = "select dog.ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, CityCouncilDistrict, CongressionalDistrict, StateSenatorialDistrict, RowNumber, ZipCode from dog join votingdistrict on dog.communitydistrict = votingdistrict.communitydistrict limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
     return results
@@ -87,7 +87,7 @@ def rawlocdisdata():
 @app.route('/rawdoglocdisdata', methods=['GET'])
 def rawdoglocdisdata():
     cursor = mydb.cursor()
-    query = "select ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, State, location.ZipCode, City, Borough, CityCouncilDistrict, CongressionalDistrict, StateSenatorialDistrict from dog join location on dog.communitydistrict = location.communitydistrict join votingdistrict on dog.communitydistrict = votingdistrict.communitydistrict limit 100;"
+    query = "select dog.ID, Name, Gender, BirthMonth, Breed, LicenseExpirationDate, LicenseIssueDate, dog.CommunityDistrict, State, location.ZipCode, City, Borough, CityCouncilDistrict, CongressionalDistrict, StateSenatorialDistrict from dog join location on dog.communitydistrict = location.communitydistrict join votingdistrict on dog.communitydistrict = votingdistrict.communitydistrict limit 100;"
     cursor.execute(query)
     results = cursor.fetchall()
     return results
